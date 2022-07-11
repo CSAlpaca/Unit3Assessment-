@@ -18,13 +18,10 @@
     {% empty %}
     <h2>No Widget Exist</h2>
     {% endfor %}
-    <hr>
-
-    <h4>Add Widget</h4>
 
     <table class="pure-table pure-table-striped">
         <thead>
-          <tr><th>Description</th><th>Quantity</th><th>Delete</th><th>WidgetId</th></tr>
+          <tr><th>Description</th><th>Quantity</th><th>Delete</th></tr>
         </thead>
         <tbody>
           {% for widget in allWidgets %}
@@ -32,11 +29,22 @@
               <td>{{widget.description}}</td>
               <td>{{widget.quantity}}</td>
               <td><a href="{% url 'deleteWidget' widget.id %}">X</a></td>
-              <td>{{widget.id}}</td>
+              
             </tr>
           {% endfor %}
+        <tr>
+            <td>Total Quantity</td>
+            <td>{{totalquantity}}</td>
+            <td></td>
+        </tr>
+        
         </tbody>
       </table>
+    <hr>
+
+    <h4>Add Widget</h4>
+
+
 
     <form class="pure-form" action="{% url 'addwidget' %}" method="post">
         {% csrf_token %}

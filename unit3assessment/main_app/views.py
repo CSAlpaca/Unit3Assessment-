@@ -9,8 +9,12 @@ from django.shortcuts import render, redirect
 def home(request):
     form = WidgetForm()
     allWidgets = Widget.objects.all()
+    totalquantity = 0
+    for widget in allWidgets:
+         totalquantity += widget.quantity
+    print(totalquantity)
     print(allWidgets)
-    return render(request, 'home.html', {'form':form,'allWidgets': allWidgets})
+    return render(request, 'home.html', {'form':form,'allWidgets': allWidgets, 'totalquantity': totalquantity})
 
 
 def addwidget(request):
